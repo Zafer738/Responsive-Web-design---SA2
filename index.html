@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- sets character encoding -->
+  <meta charset="UTF-8" />
+
+  <!-- makes the site scale correctly on mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- page title shown in browser tab -->
+  <title>Responsive Web App | Creative Computing</title>
+
+  <!-- internal css styles -->
+  <style>
+    /* css variables for colors and spacing */
+    :root {
+      --primary: #1f2933;      /* main dark color */
+      --secondary: #3b82f6;    /* main blue color */
+      --accent: #22c55e;       /* highlight color */
+      --background: #f8fafc;   /* page background */
+      --text: #111827;         /* main text color */
+      --muted: #6b7280;        /* soft text color */
+      --radius: 12px;          /* rounded corners */
+      --transition: 0.3s ease; /* smooth animations */
+    }
+
+    /* removes default spacing and sets box model */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* base styles for the page */
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--background);
+    }
+
+    /* makes images responsive */
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* removes underline from links */
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* centers content and limits width */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* header stays at the top when scrolling */
+    header {
+      background: white;
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    /* main navigation layout */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    /* site logo text */
+    .logo {
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--primary);
+    }
+
+    /* navigation links layout */
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    /* navigation link style */
+    .nav-links a {
+      font-weight: 500;
+      color: var(--muted);
+      transition: color var(--transition);
+    }
+
+    /* link hover effect */
+    .nav-links a:hover {
+      color: var(--secondary);
+    }
+
+    /* hamburger icon for mobile */
+    .menu-toggle {
+      display: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+
+    /* hero section layout */
+    .hero {
+      padding: 4rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    /* hero heading */
+    .hero-text h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    /* hero paragraph text */
+    .hero-text p {
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    /* button style */
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: var(--secondary);
+      color: white;
+      border-radius: var(--radius);
+      font-weight: 600;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    /* button hover animation */
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    /* hero image placeholder */
+    .hero-image {
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+      border-radius: var(--radius);
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    /* general section spacing */
+    section {
+      padding: 4rem 0;
+    }
+
+    /* section heading layout */
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    /* section heading text */
+    .section-title h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* section sub text */
+    .section-title p {
+      color: var(--muted);
+    }
+
+    /* features grid layout */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    /* feature card style */
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: transform var(--transition);
+    }
+
+    /* card hover effect */
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* card heading */
+    .card h3 {
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    /* card text */
+    .card p {
+      color: var(--muted);
+    }
+
+    /* interactive section layout */
+    .interactive {
+      background: white;
+      border-radius: var(--radius);
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    /* interactive button style */
+    .interactive button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+
+    /* button hover color */
+    .interactive button:hover {
+      background: #16a34a;
+    }
+
+    /* footer style */
+    footer {
+      background: var(--primary);
+      color: #e5e7eb;
+      padding: 2rem 0;
+      margin-top: 4rem;
+    }
+
+    /* footer text */
+    footer p {
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    /* tablet layout changes */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .features {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .interactive {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* mobile layout changes */
+    @media (max-width: 600px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 70px;
+        right: 5%;
+        padding: 1.5rem;
+        border-radius: var(--radius);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      /* shows menu when active */
+      .nav-links.show {
+        display: flex;
+      }
+
+      /* shows hamburger icon */
+      .menu-toggle {
+        display: block;
+      }
+
+      /* stacks feature cards */
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- page header -->
+  <header>
+    <div class="container nav">
+      <!-- site logo -->
+      <div class="logo">CreativeWeb</div>
+
+      <!-- navigation links -->
+      <nav class="nav-links" id="navLinks">
+        <a href="about.html">About</a>
+        <a href="showcase.html">Showcase</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <!-- hamburger menu icon -->
+      <div class="menu-toggle" id="menuToggle">☰</div>
+    </div>
+  </header>
+
+  <!-- main page content -->
+  <main class="container">
+
+    <!-- hero section -->
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Responsive Web Design Done Right</h1>
+        <p>This web application demonstrates professional UX/UI design, semantic HTML, and advanced responsive layout techniques using modern CSS.</p>
+        <a href="#features" class="btn">Explore Features</a>
+      </div>
+
+      <!-- hero visual -->
+      <div class="hero-image">Responsive UI</div>
+    </section>
+
+    <!-- features section -->
+    <section id="features">
+      <div class="section-title">
+        <h2>Core Design Principles</h2>
+        <p>Built to meet academic and professional standards</p>
+      </div>
+
+      <!-- feature cards -->
+      <div class="features">
+        <article class="card">
+          <h3>Responsive Layout</h3>
+          <p>Uses CSS Grid, Flexbox, and media queries to adapt seamlessly across desktop, tablet, and mobile devices.</p>
+        </article>
+
+        <article class="card">
+          <h3>Semantic HTML</h3>
+          <p>Proper use of header, nav, main, section, article, and footer elements for accessibility and structure.</p>
+        </article>
+
+        <article class="card">
+          <h3>Professional UX/UI</h3>
+          <p>Clean typography, spacing, color harmony, and interactive feedback ensure a polished user experience.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- interactive section -->
+    <section id="interactive">
+      <div class="interactive">
+        <div>
+          <h2>Interactive Element</h2>
+          <p>Click the button to demonstrate basic JavaScript-driven interactivity, enhancing user engagement.</p>
+        </div>
+
+        <div>
+          <!-- interactive button -->
+          <button id="actionBtn">Click Me</button>
+
+          <!-- output text -->
+          <p id="output" style="margin-top:1rem; color: var(--muted);"></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- page footer -->
+  <footer id="contact">
+    <div class="container">
+      <p>
+        Contact: student@creativecomputing.ac.uk<br>
+        This project was developed as part of the BSc Creative Computing programme,
+        focusing on responsive design and modern web standards.<br>
+        © 2025 Creative Computing | Responsive Web Design Development
+      </p>
+    </div>
+  </footer>
+
+  <!-- javascript logic -->
+  <script>
+    // gets the menu icon
+    const menuToggle = document.getElementById('menuToggle');
+
+    // gets the navigation links
+    const navLinks = document.getElementById('navLinks');
+
+    // toggles mobile menu on click
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+
+    // gets the button
+    const button = document.getElementById('actionBtn');
+
+    // gets the output text
+    const output = document.getElementById('output');
+
+    // shows text when button is clicked
+    button.addEventListener('click', () => {
+      output.textContent = 'Interaction successful! This confirms JavaScript functionality.';
+    });
+  </script>
+
+</body>
+</html>
+

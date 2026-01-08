@@ -1,0 +1,323 @@
+/* global css variables */
+:root {
+  /* main dark color */
+  --primary: #1f2933;
+
+  /* main highlight color */
+  --secondary: #3b82f6;
+
+  /* accent color for buttons */
+  --accent: #22c55e;
+
+  /* page background color */
+  --background: #f8fafc;
+
+  /* main text color */
+  --text: #111827;
+
+  /* muted text color */
+  --muted: #6b7280;
+
+  /* rounded corner size */
+  --radius: 12px;
+
+  /* smooth animation timing */
+  --transition: 0.3s ease;
+}
+
+/* reset spacing and sizing */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* base page styling */
+body {
+  /* system font stack */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* page background */
+  background: var(--background);
+
+  /* text color */
+  color: var(--text);
+
+  /* line spacing for readability */
+  line-height: 1.6;
+}
+
+/* content wrapper */
+.container {
+  /* responsive width */
+  width: 90%;
+
+  /* max width on large screens */
+  max-width: 1200px;
+
+  /* center content */
+  margin: auto;
+}
+
+/* site header */
+header {
+  /* white background */
+  background: white;
+
+  /* bottom border line */
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* link reset */
+a {
+  /* remove underline */
+  text-decoration: none;
+
+  /* inherit text color */
+  color: inherit;
+}
+
+/* navigation bar layout */
+.nav {
+  /* horizontal layout */
+  display: flex;
+
+  /* space between logo and links */
+  justify-content: space-between;
+
+  /* vertical alignment */
+  align-items: center;
+
+  /* spacing inside nav */
+  padding: 1rem 0;
+}
+
+/* logo text */
+.logo {
+  /* bold text */
+  font-weight: 700;
+
+  /* larger size */
+  font-size: 1.4rem;
+
+  /* primary color */
+  color: var(--primary);
+}
+
+/* navigation links */
+nav a {
+  /* space between links */
+  margin-left: 2rem;
+
+  /* medium font weight */
+  font-weight: 500;
+
+  /* muted color */
+  color: var(--muted);
+}
+
+/* link hover effect */
+nav a:hover {
+  /* highlight color */
+  color: var(--secondary);
+}
+
+/* section spacing */
+section {
+  /* vertical padding */
+  padding: 4rem 0;
+}
+
+/* section heading wrapper */
+.section-title {
+  /* center text */
+  text-align: center;
+
+  /* space below title */
+  margin-bottom: 3rem;
+}
+
+/* grid layout */
+.grid {
+  /* enable grid */
+  display: grid;
+
+  /* three equal columns */
+  grid-template-columns: repeat(3, 1fr);
+
+  /* space between items */
+  gap: 2rem;
+}
+
+/* card container */
+.card {
+  /* white background */
+  background: white;
+
+  /* rounded corners */
+  border-radius: var(--radius);
+
+  /* hide overflow */
+  overflow: hidden;
+
+  /* soft shadow */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+
+  /* hover animation */
+  transition: transform var(--transition);
+}
+
+/* card hover movement */
+.card:hover {
+  /* lift card */
+  transform: translateY(-5px);
+}
+
+/* card images */
+.card img {
+  /* full width */
+  width: 100%;
+
+  /* fixed height */
+  height: 200px;
+
+  /* crop image nicely */
+  object-fit: cover;
+}
+
+/* card text area */
+.card-content {
+  /* inner spacing */
+  padding: 1.5rem;
+}
+
+/* card title */
+.card-content h3 {
+  /* space below heading */
+  margin-bottom: 0.5rem;
+}
+
+/* card paragraph */
+.card-content p {
+  /* muted text */
+  color: var(--muted);
+}
+
+/* video container */
+.video-wrapper {
+  /* limit width */
+  max-width: 800px;
+
+  /* center video */
+  margin: auto;
+}
+
+/* video element */
+video {
+  /* responsive width */
+  width: 100%;
+
+  /* rounded corners */
+  border-radius: var(--radius);
+}
+
+/* footer section */
+footer {
+  /* dark background */
+  background: var(--primary);
+
+  /* light text */
+  color: #e5e7eb;
+
+  /* center text */
+  text-align: center;
+
+  /* vertical padding */
+  padding: 2rem 0;
+
+  /* space above footer */
+  margin-top: 4rem;
+}
+
+/* =========================
+   responsive layout
+   ========================= */
+
+/* tablet breakpoint */
+@media (max-width: 900px) {
+  /* reduce grid columns */
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* mobile breakpoint */
+@media (max-width: 600px) {
+  /* single column grid */
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* reduce link spacing */
+  nav a {
+    margin-left: 1rem;
+  }
+}
+
+/* =========================
+   responsive navigation
+   ========================= */
+
+/* tablet nav adjustments */
+@media (max-width: 900px) {
+
+  /* smaller link spacing */
+  nav a {
+    margin-left: 1rem;
+
+    /* slightly smaller text */
+    font-size: 0.95rem;
+  }
+
+  /* wider container */
+  .container {
+    width: 95%;
+  }
+}
+
+/* mobile nav layout */
+@media (max-width: 600px) {
+
+  /* stack nav items */
+  .nav {
+    flex-direction: column;
+
+    /* center items */
+    align-items: center;
+
+    /* center text */
+    text-align: center;
+  }
+
+  /* nav link container */
+  nav {
+    /* space from logo */
+    margin-top: 1rem;
+
+    /* vertical layout */
+    display: flex;
+    flex-direction: column;
+
+    /* space between links */
+    gap: 0.75rem;
+  }
+
+  /* mobile link styling */
+  nav a {
+    /* remove left margin */
+    margin-left: 0;
+
+    /* readable size */
+    font-size: 1rem;
+  }
+}
